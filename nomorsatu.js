@@ -1,15 +1,17 @@
-function cariDuplikat(nums) {
-  let result = [];
-  for (var i = 0; i < nums.length; i++) {
-    let value = Math.abs(nums[i]);
-    let index = value - 1;
-    if (nums[index] < 0) {
-      result.push(value);
-    } else {
-      nums[index] *= -1;
-    }
-  }
-  return result.length;
-}
+const kaosKaki = (items) => {
+  const arr = items;
+  const duplicates = Array.from(
+    new Set(arr.filter((item, i, array) => i !== array.indexOf(item)))
+  );
 
-console.log(cariDuplikat([1, 1, 3, 1, 2, 1, 3, 3, 3, 3]));
+  const value = arr.filter(
+    (item) => item === duplicates.find((dup) => dup === item)
+  );
+
+  const total = value.length;
+
+  const res = total % 2 === 0 ? total / 2 : (total - 1) / 2;
+  return res;
+};
+
+console.log(kaosKaki([5, 7, 7, 9, 10, 4, 5, 10, 6, 5]));
